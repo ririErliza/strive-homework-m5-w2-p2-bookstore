@@ -1,8 +1,10 @@
+import { Component } from 'react'
 import { Card,Accordion } from 'react-bootstrap'
 import SingleComment from './SingleComment'
 
-const CommentList = () => {
+class CommentList extends Component{
 
+    render(){
     return (
       
             <Card>
@@ -19,5 +21,5 @@ const CommentList = () => {
                                                     
     )
 }
-
+}
 export default CommentList

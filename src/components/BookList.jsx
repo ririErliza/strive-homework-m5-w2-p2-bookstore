@@ -1,30 +1,43 @@
-import { useState } from "react";
+import { Component } from "react";
 import { Container, Row} from "react-bootstrap";
-import books from "../data/Books.json"
+
 import SingleBook from "./SingleBook";
 
 
-const BookList = () =>{
-    const[query, setQuery] = useState("");
+class BookList extends Component{
+    state = {
+        searchQuery: ''
+    }
+   render(){
+    return (
+        <Container>
+            <Row className="justify-content-center">
+                <input type="text" placeholder="Search title..." className="w-75" 
+                value={this.state.searchQuery}
+                onChange={e => this.setState({ searchQuery: e.target.value })}
+                />
+            </Row>
 
-   return (
-    <Container>
-        <Row className="justify-content-center">
-            <input type="text" placeholder="Search title..." className="w-75" 
-            onChange={(e)=>setQuery(e.target.value)}
-            />
-        </Row>
-        
-        <Row className="mt-4">
-            {books
-            .filter((book)=> book.title.toLowerCase().includes(query.toLowerCase()))
-            .map(book=>(<SingleBook key={book.asin} book={book}/> 
-            ))}
-        </Row>
-    </Container>
-   ) 
+            <Row className="justify-content-center mt-4">
+            <h5> Click title to see comments</h5>
+            </Row>
+            
+            <Row className="mt-4">
+                
+                {this.props.books
+                .filter((book)=> book.title.toLowerCase().includes(this.state.searchQuery))
+                .map(book=>(<SingleBook key={book.asin} book={book}/> 
+                ))}
+            </Row>
+        </Container>
+       ) 
+    
+    }
 
-}
+
+   }
+
+   
 
 
 export default BookList

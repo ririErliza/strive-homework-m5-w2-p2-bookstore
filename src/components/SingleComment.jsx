@@ -1,11 +1,14 @@
+import { Component } from "react"
 
-const SingleComment = () => {
+class SingleComment extends Component {
 
+    render(){
     return (
             <li>Comments from abcs</li>
                        
                                
     )
+}
 }
 
 export default SingleComment
